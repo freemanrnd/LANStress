@@ -1,0 +1,4 @@
+LANSTress is a tool of traffic emulation on IP based networks.
+This utility aims to provide functionality for network protocol researches.
+Currently it supports TCP flooding of one particular address and broadcast UDP flooding.
+The next nearest aim is supporting of different distribution laws of package sending.

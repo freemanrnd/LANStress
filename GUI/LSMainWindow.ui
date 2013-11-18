@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Kurbatoff Oleg</author>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>295</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LANStress - эмуляция нагрузки на локальную сеть</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>61</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="FloodTypeLayout">
+     <item>
+      <widget class="QRadioButton" name="RB_TCP">
+       <property name="toolTip">
+        <string>Нагрузка целевого хоста TCP пакетами со случайным содержимым</string>
+       </property>
+       <property name="whatsThis">
+        <string>Нагрузка целевого хоста TCP пакетами со случайным содержимым</string>
+       </property>
+       <property name="text">
+        <string>TCP</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="RB_UDP">
+       <property name="toolTip">
+        <string>Нагрузка широковещательными UDP пакетами</string>
+       </property>
+       <property name="whatsThis">
+        <string>Нагрузка широковещательными UDP пакетами</string>
+       </property>
+       <property name="text">
+        <string>UDP</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>78</x>
+      <y>10</y>
+      <width>541</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="TCPSettingsLayout">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
+     <property name="formAlignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="L_ipaddr">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>IP адрес</string>
+       </property>
+       <property name="buddy">
+        <cstring>E_IPAddr</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="E_IPAddr">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>IP адрес цели пакета</string>
+       </property>
+       <property name="whatsThis">
+        <string>IP адрес цели пакета (4 числа от 0 до 255, разделённые точками)</string>
+       </property>
+       <property name="inputMask">
+        <string>000.000.000.000; </string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="L_flags">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Флаги</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="CB_CWR">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>CWR</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_ECN">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>ECN</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_URG">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Флаг важности</string>
+         </property>
+         <property name="whatsThis">
+          <string>Флаг важности</string>
+         </property>
+         <property name="text">
+          <string>URG</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_ACK">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Флаг подтверждения</string>
+         </property>
+         <property name="whatsThis">
+          <string>Флаг подтверждения</string>
+         </property>
+         <property name="text">
+          <string>ACK</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_PSH">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Флаг проталкивания</string>
+         </property>
+         <property name="whatsThis">
+          <string>Флаг проталкивания (сброс буфера принимающей стороны)</string>
+         </property>
+         <property name="text">
+          <string>PSH</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_RST">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Флаг сброса соединения</string>
+         </property>
+         <property name="whatsThis">
+          <string>Флаг сброса соединения</string>
+         </property>
+         <property name="text">
+          <string>RST</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_SYN">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Флаг синхронизации</string>
+         </property>
+         <property name="whatsThis">
+          <string>Флаг синхронизации</string>
+         </property>
+         <property name="text">
+          <string>SYN</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CB_FIN">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Флаг завершения соединения</string>
+         </property>
+         <property name="whatsThis">
+          <string>Флаг завершения соединения</string>
+         </property>
+         <property name="text">
+          <string>FIN</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>120</y>
+      <width>221</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="GenericSettingsLayout">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
+     <property name="labelAlignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="formAlignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <item row="0" column="1">
+      <widget class="QSpinBox" name="SB_Port">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="L_PacketSize">
+       <property name="text">
+        <string>Размер пакета</string>
+       </property>
+       <property name="buddy">
+        <cstring>SB_PacketSize</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="SB_PacketSize">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Размер пакета в байтах (максимально 65K)</string>
+       </property>
+       <property name="whatsThis">
+        <string>Размер пакета в байтах (максимально 65K)</string>
+       </property>
+       <property name="suffix">
+        <string> байт</string>
+       </property>
+       <property name="maximum">
+        <number>65000</number>
+       </property>
+       <property name="value">
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="L_port">
+       <property name="text">
+        <string>Порт получателя</string>
+       </property>
+       <property name="buddy">
+        <cstring>SB_Port</cstring>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>220</y>
+      <width>281</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="ONOFFLayout">
+     <item>
+      <widget class="QPushButton" name="PB_ON">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PB_OFF">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Выключить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QProgressBar" name="BAR_Load">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>240</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>120</y>
+      <width>309</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="L_FloodTime">
+       <property name="text">
+        <string>Нагрузка</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QSpinBox" name="SB_FloodTime">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Продолжительность периода нагрузки (если тишина больше 0)</string>
+       </property>
+       <property name="suffix">
+        <string>мс</string>
+       </property>
+       <property name="maximum">
+        <number>3000</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="SB_SilentTime">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Период тишины в миллисекундах</string>
+       </property>
+       <property name="whatsThis">
+        <string>Период тишины в миллисекундах</string>
+       </property>
+       <property name="suffix">
+        <string>мс</string>
+       </property>
+       <property name="maximum">
+        <number>3000</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="L_FloodFreq">
+       <property name="text">
+        <string>Частота</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="SB_FloodFreq">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Пакетов в секунду при средней нагрузке (0 - пиковая нагрузка)</string>
+       </property>
+       <property name="whatsThis">
+        <string>Пакетов в секунду при средней нагрузке (0 - пиковая нагрузка)</string>
+       </property>
+       <property name="suffix">
+        <string>п/с</string>
+       </property>
+       <property name="maximum">
+        <number>1000000</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="L_SilentTime">
+       <property name="text">
+        <string>Тишина</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <tabstops>
+  <tabstop>RB_UDP</tabstop>
+  <tabstop>RB_TCP</tabstop>
+  <tabstop>E_IPAddr</tabstop>
+  <tabstop>CB_CWR</tabstop>
+  <tabstop>CB_ECN</tabstop>
+  <tabstop>CB_URG</tabstop>
+  <tabstop>CB_ACK</tabstop>
+  <tabstop>CB_PSH</tabstop>
+  <tabstop>CB_RST</tabstop>
+  <tabstop>CB_SYN</tabstop>
+  <tabstop>CB_FIN</tabstop>
+  <tabstop>SB_Port</tabstop>
+  <tabstop>SB_PacketSize</tabstop>
+  <tabstop>PB_ON</tabstop>
+  <tabstop>PB_OFF</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
